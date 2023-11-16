@@ -1,0 +1,215 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`error: action targeting non existent stait 1`] = `
+"error TS2344: Type '{ type: \\"state1\\"; actions: { action: () => \\"state2\\"; }; }' does not satisfy the constraint '{ type: string; context?: ContextDecl; actions?: ActionsDecl<{ type: \\"state1\\"; actions: { action: () => \\"state2\\"; }; }>; service?: \\"state1\\"; }'.
+  Types of property 'actions' are incompatible.
+    Type '{ action: () => \\"state2\\"; }' is not assignable to type 'ActionsDecl<{ type: \\"state1\\"; actions: { action: () => \\"state2\\"; }; }>'.
+      Property 'action' is incompatible with index signature.
+        Type '() => \\"state2\\"' is not assignable to type '(payload?: any) => \\"state1\\"'.
+          Type '\\"state2\\"' is not assignable to type '\\"state1\\"'.
+"
+`;
+
+exports[`error: action targeting non existent stait 2 1`] = `
+"error TS2344: Type '{ type: \\"state1\\"; actions: { action1: () => \\"state2\\"; action2: () => \\"state1\\"; }; }' does not satisfy the constraint '{ type: string; context?: ContextDecl; actions?: ActionsDecl<{ type: \\"state1\\"; actions: { action1: () => \\"state2\\"; action2: () => \\"state1\\"; }; }>; service?: \\"state1\\"; }'.
+  Types of property 'actions' are incompatible.
+    Type '{ action1: () => \\"state2\\"; action2: () => \\"state1\\"; }' is not assignable to type 'ActionsDecl<{ type: \\"state1\\"; actions: { action1: () => \\"state2\\"; action2: () => \\"state1\\"; }; }>'.
+      Property 'action1' is incompatible with index signature.
+        Type '() => \\"state2\\"' is not assignable to type '(payload?: any) => \\"state1\\"'.
+          Type '\\"state2\\"' is not assignable to type '\\"state1\\"'.
+"
+`;
+
+exports[`error: action targeting non existent stait with multiple staits 1`] = `
+"error TS2344: Type '{ type: \\"state1\\"; actions: { action: () => \\"state4\\"; }; } | { type: \\"state2\\"; actions: { action: () => \\"state3\\"; }; }' does not satisfy the constraint '{ type: string; context?: ContextDecl; actions?: ActionsDecl<{ type: \\"state1\\"; actions: { action: () => \\"state4\\"; }; } | { type: \\"state2\\"; actions: { action: () => \\"state3\\"; }; }>; service?: \\"state1\\" | \\"state2\\"; }'.
+  Type '{ type: \\"state1\\"; actions: { action: () => \\"state4\\"; }; }' is not assignable to type '{ type: string; context?: ContextDecl; actions?: ActionsDecl<{ type: \\"state1\\"; actions: { action: () => \\"state4\\"; }; } | { type: \\"state2\\"; actions: { action: () => \\"state3\\"; }; }>; service?: \\"state1\\" | \\"state2\\"; }'.
+    Types of property 'actions' are incompatible.
+      Type '{ action: () => \\"state4\\"; }' is not assignable to type 'ActionsDecl<{ type: \\"state1\\"; actions: { action: () => \\"state4\\"; }; } | { type: \\"state2\\"; actions: { action: () => \\"state3\\"; }; }>'.
+        Property 'action' is incompatible with index signature.
+          Type '() => \\"state4\\"' is not assignable to type '(payload?: any) => \\"state1\\" | \\"state2\\"'.
+            Type '\\"state4\\"' is not assignable to type '\\"state1\\" | \\"state2\\"'. Did you mean '\\"state1\\"'?
+"
+`;
+
+exports[`error: service targeting non existent stait 1`] = `
+"error TS2344: Type '{ type: \\"stait1\\"; service: \\"stait2\\"; }' does not satisfy the constraint '{ type: string; context?: ContextDecl; actions?: ActionsDecl<{ type: \\"stait1\\"; service: \\"stait2\\"; }>; service?: \\"stait1\\"; }'.
+  Types of property 'service' are incompatible.
+    Type '\\"stait2\\"' is not assignable to type '\\"stait1\\"'.
+"
+`;
+
+exports[`type: actions targeting multiple staits 1`] = `
+"type actions_targeting_multiple_staits =
+
+    | {
+        type: 'stait1'
+        actions: {
+          action1: () =>
+            | 'stait1'
+            | 'stait2'
+          action2: () => 'stait2'
+        }
+      }
+    | {
+        type: 'stait2'
+        actions: {
+          action1: () =>
+            | 'stait1'
+            | 'stait2'
+        }
+      }
+"
+`;
+
+exports[`type: cyclic action 1`] = `
+"type cyclic_action =
+  {
+    type: 'stait1'
+    actions: {
+      action: () => 'stait1'
+    }
+  }
+"
+`;
+
+exports[`type: dedupe action targets 1`] = `
+"type dedupe_action_targets =
+
+    | {
+        type: 'stait1'
+        actions: {
+          action1: () =>
+            | 'stait1'
+            | 'stait2'
+          action2: () => 'stait1'
+        }
+      }
+    | {
+        type: 'stait2'
+      }
+"
+`;
+
+exports[`type: empty actions 1`] = `
+"type empty_actions =
+
+    | {
+        type: 'stait1'
+        actions: {}
+      }
+    | {
+        type: 'stait2'
+      }
+"
+`;
+
+exports[`type: extra properties and context 1`] = `
+"type extra_properties_and_context =
+
+    | {
+        type: 'state1'
+      }
+    | {
+        type: 'state1'
+        context: {
+          someData: string
+        }
+      }
+"
+`;
+
+exports[`type: extra property 1`] = `
+"type extra_property =
+  {
+    type: 'state1'
+  }
+"
+`;
+
+exports[`type: multiple actions 1`] = `
+"type multiple_actions =
+
+    | {
+        type: 'stait1'
+        actions: {
+          action1: () => 'stait2'
+          action2: () => 'stait3'
+        }
+      }
+    | {
+        type: 'stait2'
+        actions: {
+          action1: () => 'stait1'
+          action2: () => 'stait2'
+        }
+      }
+    | {
+        type: 'stait3'
+      }
+"
+`;
+
+exports[`type: single bare stait 1`] = `
+"type single_bare_stait =
+  {
+    type: 'state1'
+  }
+"
+`;
+
+exports[`type: two bare staits 1`] = `
+"type two_bare_staits =
+
+    | {
+        type: 'state1'
+      }
+    | {
+        type: 'state2'
+      }
+"
+`;
+
+exports[`type: with context 1`] = `
+"type with_context =
+  {
+    type: 'stait1'
+    context: {
+      data1: string
+      data2: Partial<
+        Omit<
+          {
+            complexData: true
+            reallyComplex: false
+          },
+          'reallyComplex'
+        >
+      >
+    }
+  }
+"
+`;
+
+exports[`type: with service 1`] = `
+"type with_service =
+  {
+    type: 'stait1'
+    service: 'stait1'
+  }
+"
+`;
+
+exports[`type: with services 1`] = `
+"type with_services =
+
+    | {
+        type: 'stait1'
+        service: 'stait2'
+      }
+    | {
+        type: 'stait2'
+        service:
+          | 'stait1'
+          | 'stait2'
+      }
+"
+`;
