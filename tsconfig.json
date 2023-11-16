@@ -7,6 +7,8 @@
     "noUncheckedIndexedAccess": true,
     "strict": true,
 
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "types": [],
 
@@ -23,5 +25,10 @@
     "preserveWatchOutput": true,
 
     "skipLibCheck": true
-  }
+  },
+  "references": [
+    {
+      "path": "./tsconfig.tests.json"
+    }
+  ]
 }
