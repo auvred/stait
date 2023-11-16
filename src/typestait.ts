@@ -96,12 +96,30 @@ export type ActionForTypestait<
     [Key in ActionName]: (payload: infer ActionPayload) => infer ActionTarget
   }
 }
-  ? (
-      context: Context,
-      payload: ActionPayload,
-    ) => ActualStaitFromTypestait<
-      T,
-      // @ts-expect-error: TODO: should we ignore this?
-      ActionTarget
-    >
-  : 1
+  ? unknown extends Context
+    ? unknown extends ActionPayload
+      ? () => ActualStaitFromTypestait<
+          T,
+          // @ts-expect-error: TODO: should we ignore this?
+          ActionTarget
+        >
+      : (opts: { payload: ActionPayload }) => ActualStaitFromTypestait<
+          T,
+          // @ts-expect-error: TODO: should we ignore this?
+          ActionTarget
+        >
+    : unknown extends ActionPayload
+      ? (opts: { ctx: Context }) => ActualStaitFromTypestait<
+          T,
+          // @ts-expect-error: TODO: should we ignore this?
+          ActionTarget
+        >
+      : (opts: {
+          ctx: Context
+          payload: ActionPayload
+        }) => ActualStaitFromTypestait<
+          T,
+          // @ts-expect-error: TODO: should we ignore this?
+          ActionTarget
+        >
+  : never
