@@ -63,14 +63,21 @@ export type ServiceForTypestait<
   context?: infer Context
   service: infer ServiceTarget
 }
-  ? // TODO: do not mention context here if it isn't present in the stait
-    (context: Context) => MaybePromise<
-      ActualStaitFromTypestait<
-        T,
-        // @ts-expect-error: TODO: should we ignore this?
-        ServiceTarget
+  ? unknown extends Context
+    ? () => MaybePromise<
+        ActualStaitFromTypestait<
+          T,
+          // @ts-expect-error: TODO: should we ignore this?
+          ServiceTarget
+        >
       >
-    >
+    : (context: Context) => MaybePromise<
+        ActualStaitFromTypestait<
+          T,
+          // @ts-expect-error: TODO: should we ignore this?
+          ServiceTarget
+        >
+      >
   : never
 
 export type ActionForTypestait<

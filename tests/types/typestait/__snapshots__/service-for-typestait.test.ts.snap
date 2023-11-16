@@ -7,9 +7,7 @@ exports[`error: service for non existent stait 1`] = `
 
 exports[`type: multiple staits 1`] = `
 "type multiple_staits =
-  (
-    context: unknown,
-  ) => MaybePromise<{
+  () => MaybePromise<{
     type: 'stait2'
     context: {
       data1: string
@@ -21,9 +19,7 @@ exports[`type: multiple staits 1`] = `
 
 exports[`type: recursive service depth 1 1`] = `
 "type recursive_service_depth_1 =
-  (
-    context: unknown,
-  ) => MaybePromise<{
+  () => MaybePromise<{
     type: 'stait1'
     service: any
   }>
@@ -32,9 +28,7 @@ exports[`type: recursive service depth 1 1`] = `
 
 exports[`type: recursive service depth 2 1`] = `
 "type recursive_service_depth_2 =
-  (
-    context: unknown,
-  ) => MaybePromise<{
+  () => MaybePromise<{
     type: 'stait1'
     service: any
   }>
@@ -43,6 +37,18 @@ exports[`type: recursive service depth 2 1`] = `
 
 exports[`type: recursive service depth 2 equals depth 1 1`] = `
 "type recursive_service_depth_2_equals_depth_1 =
+  true
+"
+`;
+
+exports[`type: with context in args 1`] = `
+"type with_context_in_args =
+  true
+"
+`;
+
+exports[`type: without context in args 1`] = `
+"type without_context_in_args =
   true
 "
 `;

@@ -44,3 +44,38 @@ type ExpectError_service_for_non_existent_stait = ServiceForTypestait<
   },
   'stait2'
 >
+
+type ExpectType_with_context_in_args = Equal<
+  Parameters<
+    ServiceForTypestait<
+      {
+        type: 'stait1'
+        context: {
+          data1: string
+          data2: 123
+        }
+        service: 'stait1'
+      },
+      'stait1'
+    >
+  >,
+  [
+    {
+      data1: string
+      data2: 123
+    },
+  ]
+>
+
+type ExpectType_without_context_in_args = Equal<
+  Parameters<
+    ServiceForTypestait<
+      {
+        type: 'stait1'
+        service: 'stait1'
+      },
+      'stait1'
+    >
+  >,
+  []
+>
