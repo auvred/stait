@@ -2,6 +2,7 @@
 // https://github.com/microsoft/TypeScript/issues/52898
 // https://github.com/microsoft/TypeScript/issues/54464
 
+import type { ActualStaitFromTypestait } from './actual-stait'
 import type { ActionsDecl, ContextDecl, Flatten } from './utils'
 
 export type Typestait<
@@ -47,3 +48,61 @@ export type Typestait<
         123
     : 456
 }[T['type']]
+
+export type ServiceForTypestait<
+  T extends {
+    type: string
+    context?: ContextDecl
+    actions?: ActionsDecl<T>
+    service?: T['type']
+  },
+  // TODO: limit Types only to staits that have service
+  Type extends T['type'],
+> = Extract<T, { type: Type }> extends {
+  type: Type
+  context?: infer Context
+  service: infer ServiceTarget
+}
+  ? // TODO: do not mention context here if it isn't present in the stait
+    (
+      context: Context,
+    ) => // TODO: should we wrap the return type into MaybePromise for better exterior readability?
+    | Promise<
+          ActualStaitFromTypestait<
+            T,
+            // @ts-expect-error: TODO: should we ignore this?
+            ServiceTarget
+          >
+        >
+      | ActualStaitFromTypestait<
+          T,
+          // @ts-expect-error: TODO: should we ignore this?
+          ServiceTarget
+        >
+  : never
+
+export type ActionForTypestait<
+  T extends {
+    type: string
+    context?: ContextDecl
+    actions?: ActionsDecl<T>
+    service?: T['type']
+  },
+  Type extends T['type'],
+  ActionName extends keyof Extract<T, { type: Type }>['actions'],
+> = Extract<T, { type: Type }> extends {
+  type: Type
+  context?: infer Context
+  actions: {
+    [Key in ActionName]: (payload: infer ActionPayload) => infer ActionTarget
+  }
+}
+  ? (
+      context: Context,
+      payload: ActionPayload,
+    ) => ActualStaitFromTypestait<
+      T,
+      // @ts-expect-error: TODO: should we ignore this?
+      ActionTarget
+    >
+  : 1

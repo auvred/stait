@@ -1,0 +1,64 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`error: action for non existent stait 1`] = `
+"error TS2344: Type '\\"stait2\\"' does not satisfy the constraint '\\"stait1\\"'.
+"
+`;
+
+exports[`error: non existent action 1`] = `
+"error TS2344: Type '\\"action2\\"' does not satisfy the constraint '\\"action1\\"'.
+"
+`;
+
+exports[`type: simple recursive action depth 1 1`] = `
+"type simple_recursive_action_depth_1 =
+  (
+    context: unknown,
+    payload: unknown,
+  ) => {
+    type: 'stait1'
+    actions: {
+      action1: any
+    }
+  }
+"
+`;
+
+exports[`type: simple recursive action depth 2 1`] = `
+"type simple_recursive_action_depth_2 =
+  (
+    context: unknown,
+    payload: unknown,
+  ) => {
+    type: 'stait1'
+    actions: {
+      action1: any
+    }
+  }
+"
+`;
+
+exports[`type: simple recursive action depth 2 equals depth 1 1`] = `
+"type simple_recursive_action_depth_2_equals_depth_1 =
+  Equal<
+    (
+      context: unknown,
+      payload: unknown,
+    ) => {
+      type: 'stait1'
+      actions: {
+        action1: any
+      }
+    },
+    (
+      context: unknown,
+      payload: unknown,
+    ) => {
+      type: 'stait1'
+      actions: {
+        action1: any
+      }
+    }
+  >
+"
+`;
