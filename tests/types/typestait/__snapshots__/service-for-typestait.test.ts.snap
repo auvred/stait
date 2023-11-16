@@ -9,21 +9,13 @@ exports[`type: multiple staits 1`] = `
 "type multiple_staits =
   (
     context: unknown,
-  ) =>
-    | {
-        type: 'stait2'
-        context: {
-          data1: string
-          data2: 123
-        }
-      }
-    | Promise<{
-        type: 'stait2'
-        context: {
-          data1: string
-          data2: 123
-        }
-      }>
+  ) => MaybePromise<{
+    type: 'stait2'
+    context: {
+      data1: string
+      data2: 123
+    }
+  }>
 "
 `;
 
@@ -31,15 +23,10 @@ exports[`type: recursive service depth 1 1`] = `
 "type recursive_service_depth_1 =
   (
     context: unknown,
-  ) =>
-    | {
-        type: 'stait1'
-        service: any
-      }
-    | Promise<{
-        type: 'stait1'
-        service: any
-      }>
+  ) => MaybePromise<{
+    type: 'stait1'
+    service: any
+  }>
 "
 `;
 
@@ -47,15 +34,10 @@ exports[`type: recursive service depth 2 1`] = `
 "type recursive_service_depth_2 =
   (
     context: unknown,
-  ) =>
-    | {
-        type: 'stait1'
-        service: any
-      }
-    | Promise<{
-        type: 'stait1'
-        service: any
-      }>
+  ) => MaybePromise<{
+    type: 'stait1'
+    service: any
+  }>
 "
 `;
 

@@ -3,7 +3,7 @@
 // https://github.com/microsoft/TypeScript/issues/54464
 
 import type { ActualStaitFromTypestait } from './actual-stait'
-import type { ActionsDecl, ContextDecl, Flatten } from './utils'
+import type { ActionsDecl, ContextDecl, Flatten, MaybePromise } from './utils'
 
 export type Typestait<
   T extends {
@@ -64,21 +64,13 @@ export type ServiceForTypestait<
   service: infer ServiceTarget
 }
   ? // TODO: do not mention context here if it isn't present in the stait
-    (
-      context: Context,
-    ) => // TODO: should we wrap the return type into MaybePromise for better exterior readability?
-    | Promise<
-          ActualStaitFromTypestait<
-            T,
-            // @ts-expect-error: TODO: should we ignore this?
-            ServiceTarget
-          >
-        >
-      | ActualStaitFromTypestait<
-          T,
-          // @ts-expect-error: TODO: should we ignore this?
-          ServiceTarget
-        >
+    (context: Context) => MaybePromise<
+      ActualStaitFromTypestait<
+        T,
+        // @ts-expect-error: TODO: should we ignore this?
+        ServiceTarget
+      >
+    >
   : never
 
 export type ActionForTypestait<

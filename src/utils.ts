@@ -12,3 +12,5 @@ export type Flatten<T> = [T] extends [infer TT]
       [K in keyof TT]: TT[K]
     }
   : never
+
+export type MaybePromise<T> = Promise<T> | T
