@@ -1,3 +1,4 @@
+export { type ActualStaitFromTypestait } from './actual-stait'
 export {
   type Typestait,
   type ActionForTypestait,

@@ -1,0 +1,62 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`type: actual stait 1`] = `
+"type actual_stait =
+  {
+    type: 'stait1'
+    context: {
+      data1: string
+      data2: 123
+    }
+    actions: {
+      action1: (opts: {
+        ctx: {
+          data1: string
+          data2: 123
+        }
+      }) => ActualStaitFromTypestait<
+        Typestait<
+          | {
+              type: 'stait1'
+              context: {
+                data1: string
+                data2: 123
+              }
+              actions: {
+                action1: (
+                  payload: number,
+                ) =>
+                  | 'stait1'
+                  | 'stait2'
+              }
+            }
+          | {
+              type: 'stait2'
+              context: {
+                data3: string
+                data4: 123
+              }
+              service:
+                | 'stait1'
+                | 'stait2'
+            }
+        >,
+        | 'stait1'
+        | 'stait2'
+      >
+    }
+  }
+"
+`;
+
+exports[`type: multiple types 1`] = `
+"type multiple_types =
+
+    | {
+        type: 'stait1'
+      }
+    | {
+        type: 'stait2'
+      }
+"
+`;
