@@ -3,7 +3,7 @@
   "extends": "@auvred",
   "overrides": [
     {
-      "files": ["./tests/types/*.test.ts"],
+      "files": ["./tests/types/**/*.test.ts"],
       "rules": {
         "unused-imports/no-unused-vars": [
           "error",

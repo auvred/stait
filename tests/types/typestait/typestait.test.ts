@@ -1,6 +1,6 @@
-import { runTypesTests } from './run-types-tests'
+import { runTypesTests } from '../../utils'
 
-import type { Typestait } from '../../src/typestait'
+import type { Typestait } from '../../../src/typestait'
 
 runTypesTests(import.meta.url)
 
