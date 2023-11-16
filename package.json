@@ -4,7 +4,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "vitest",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit -p tsconfig.build.json"
   },
   "devDependencies": {
     "@auvred/eslint-config": "^0.5.0",
