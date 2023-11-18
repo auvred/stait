@@ -56,6 +56,7 @@ export type PublicActionFromTypestait<
     [Key in ActionName]: (payload: infer ActionPayload) => unknown
   }
 }
-  ? // TODO: do not mention payload here if it isn't present in the stait
-    (payload: ActionPayload) => void
+  ? unknown extends ActionPayload
+    ? () => void
+    : (payload: ActionPayload) => void
   : never

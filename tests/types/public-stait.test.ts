@@ -106,3 +106,33 @@ type ExpectError_public_action_from_typestait_should_validate_action_name =
     'stait1',
     'action2'
   >
+
+type ExpectType_action_without_payload = PublicActionFromTypestait<
+  Typestait<{
+    type: 'stait1'
+    actions: {
+      action1: () => 'stait1'
+    }
+  }>,
+  'stait1',
+  'action1'
+>
+type ExpectType_action_should_preserve_absence_of_payload = Equal<
+  Parameters<ExpectType_action_without_payload>,
+  []
+>
+
+type ExpectType_action_with_payload = PublicActionFromTypestait<
+  Typestait<{
+    type: 'stait1'
+    actions: {
+      action1: (payload: { data1: string; data2: 123 }) => 'stait1'
+    }
+  }>,
+  'stait1',
+  'action1'
+>
+type ExpectType_action_should_preserve_presence_of_payload = Equal<
+  Parameters<ExpectType_action_with_payload>,
+  [{ data1: string; data2: 123 }]
+>
