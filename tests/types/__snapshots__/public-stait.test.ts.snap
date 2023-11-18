@@ -1,0 +1,64 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`error: public action from typestait should validate action name 1`] = `
+"error TS2344: Type '\\"action2\\"' does not satisfy the constraint '\\"action1\\"'.
+"
+`;
+
+exports[`error: public action from typestait should validate type 1`] = `
+"error TS2344: Type '\\"stait2\\"' does not satisfy the constraint '\\"stait1\\"'.
+"
+`;
+
+exports[`error: should validate requested type 1`] = `
+"error TS2344: Type '\\"stait3\\"' does not satisfy the constraint '\\"stait1\\"'.
+"
+`;
+
+exports[`type: index accessed action 1`] = `
+"type index_accessed_action =
+  (payload: {
+    data1: string
+    data2: 123
+  }) => void
+"
+`;
+
+exports[`type: index accessed action equals public action from typestait 1`] = `
+"type index_accessed_action_equals_public_action_from_typestait =
+  true
+"
+`;
+
+exports[`type: public action from typestait 1`] = `
+"type public_action_from_typestait =
+  (payload: {
+    data1: string
+    data2: 123
+  }) => void
+"
+`;
+
+exports[`type: public stait 1`] = `
+"type public_stait =
+  {
+    type: 'stait1'
+    context: {
+      data1: string
+      data2: 123
+    }
+    actions: {
+      action1: (payload: {
+        data3: string
+        data4: '123'
+      }) => void
+    }
+  }
+"
+`;
+
+exports[`type: should hide service 1`] = `
+"type should_hide_service =
+  true
+"
+`;
