@@ -1,6 +1,7 @@
 import { runTypesTests } from '../../utils'
 
-import type { Typestait } from '../../../src/typestait'
+import type { Typestait } from '../../../src'
+import type { Equal } from '../../utils'
 
 runTypesTests(import.meta.url)
 
@@ -148,6 +149,17 @@ type ExpectError_action_targeting_non_existent_stait_with_multiple_staits =
         }
       }
   >
+
+type ExpectType_action_with_payload = Typestait<{
+  type: 'stait1'
+  actions: {
+    action1: (payload: { data1: string; data2: 123 }) => 'stait1'
+  }
+}>
+type ExpectType_should_preserve_action_payload = Equal<
+  ExpectType_action_with_payload['actions']['action1'],
+  (payload: { data1: string; data2: 123 }) => 'stait1'
+>
 
 type ExpectType_with_service = Typestait<{
   type: 'stait1'

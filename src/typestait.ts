@@ -31,9 +31,9 @@ export type Typestait<
               ? {
                   actions: {
                     // cleanup + dedupe targets
-                    [A in keyof Stait['actions']]: () => ReturnType<
-                      Stait['actions'][A]
-                    >
+                    [A in keyof Stait['actions']]: (
+                      ...args: Parameters<Stait['actions'][A]>
+                    ) => ReturnType<Stait['actions'][A]>
                   }
                 }
               : Stait extends {

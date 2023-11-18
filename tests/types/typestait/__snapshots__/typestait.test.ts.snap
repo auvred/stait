@@ -38,6 +38,20 @@ exports[`error: service targeting non existent stait 1`] = `
 "
 `;
 
+exports[`type: action with payload 1`] = `
+"type action_with_payload =
+  {
+    type: 'stait1'
+    actions: {
+      action1: (payload: {
+        data1: string
+        data2: 123
+      }) => 'stait1'
+    }
+  }
+"
+`;
+
 exports[`type: actions targeting multiple staits 1`] = `
 "type actions_targeting_multiple_staits =
 
@@ -146,6 +160,12 @@ exports[`type: multiple actions 1`] = `
     | {
         type: 'stait3'
       }
+"
+`;
+
+exports[`type: should preserve action payload 1`] = `
+"type should_preserve_action_payload =
+  true
 "
 `;
 
