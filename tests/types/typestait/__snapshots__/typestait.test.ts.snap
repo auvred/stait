@@ -31,6 +31,16 @@ exports[`error: action targeting non existent stait with multiple staits 1`] = `
 "
 `;
 
+exports[`error: action with extra args 1`] = `
+"error TS2344: Type '{ type: \\"stait1\\"; actions: { action1: (payload1: \\"payload1\\", payload2: \\"payload2\\") => \\"stait1\\"; }; }' does not satisfy the constraint '{ type: string; context?: ContextDecl; actions?: ActionsDecl<{ type: \\"stait1\\"; actions: { action1: (payload1: \\"payload1\\", payload2: \\"payload2\\") => \\"stait1\\"; }; }>; service?: \\"stait1\\"; }'.
+  Types of property 'actions' are incompatible.
+    Type '{ action1: (payload1: \\"payload1\\", payload2: \\"payload2\\") => \\"stait1\\"; }' is not assignable to type 'ActionsDecl<{ type: \\"stait1\\"; actions: { action1: (payload1: \\"payload1\\", payload2: \\"payload2\\") => \\"stait1\\"; }; }>'.
+      Property 'action1' is incompatible with index signature.
+        Type '(payload1: \\"payload1\\", payload2: \\"payload2\\") => \\"stait1\\"' is not assignable to type '(payload?: any) => \\"stait1\\"'.
+          Target signature provides too few arguments. Expected 2 or more, but got 1.
+"
+`;
+
 exports[`error: service targeting non existent stait 1`] = `
 "error TS2344: Type '{ type: \\"stait1\\"; service: \\"stait2\\"; }' does not satisfy the constraint '{ type: string; context?: ContextDecl; actions?: ActionsDecl<{ type: \\"stait1\\"; service: \\"stait2\\"; }>; service?: \\"stait1\\"; }'.
   Types of property 'service' are incompatible.

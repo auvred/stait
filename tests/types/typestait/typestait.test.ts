@@ -161,6 +161,13 @@ type ExpectType_should_preserve_action_payload = Equal<
   (payload: { data1: string; data2: 123 }) => 'stait1'
 >
 
+type ExpectError_action_with_extra_args = Typestait<{
+  type: 'stait1'
+  actions: {
+    action1: (payload1: 'payload1', payload2: 'payload2') => 'stait1'
+  }
+}>
+
 type ExpectType_with_service = Typestait<{
   type: 'stait1'
   service: 'stait1'
