@@ -15,6 +15,33 @@ exports[`error: should validate requested type 1`] = `
 "
 `;
 
+exports[`type: action should preserve absence of payload 1`] = `
+"type action_should_preserve_absence_of_payload =
+  true
+"
+`;
+
+exports[`type: action should preserve presence of payload 1`] = `
+"type action_should_preserve_presence_of_payload =
+  true
+"
+`;
+
+exports[`type: action with payload 1`] = `
+"type action_with_payload =
+  (payload: {
+    data1: string
+    data2: 123
+  }) => void
+"
+`;
+
+exports[`type: action without payload 1`] = `
+"type action_without_payload =
+  () => void
+"
+`;
+
 exports[`type: index accessed action 1`] = `
 "type index_accessed_action =
   (payload: {
